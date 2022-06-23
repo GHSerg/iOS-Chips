@@ -41,4 +41,21 @@ var createThread = Thread {
     }
 }
 
+var solderThread = Thread {
+    for _ in 1...10 {
+        while isEmptyStack {
+            cond.wait()
+        }
+        
+        lifoStack.removeFirst().soldering()
+        if lifoStack.count < 1 {
+            isEmptyStack = true
+        }
+       
+    }
+    
+}
+
+createThread.start()
+solderThread.start()
 
